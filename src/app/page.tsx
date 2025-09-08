@@ -1,103 +1,49 @@
-import Image from "next/image";
-
+// app/page.tsx
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // Day 1: 아직은 더미 데이터 (Day 2~에 API 연결)
+  const updatedAt = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  const Card = ({ title, children }: { title: string; children: React.ReactNode }) => (
+    <div className="rounded-2xl border p-4 shadow-sm bg-white/60">
+      <h2 className="text-lg font-semibold mb-2">{title}</h2>
+      <div className="text-sm text-gray-700">{children}</div>
     </div>
+  );
+
+  return (
+    <main className="min-h-screen bg-gray-50">
+      <div className="max-w-3xl mx-auto p-4 sm:p-6">
+        <header className="mb-4">
+          <h1 className="text-2xl font-bold">Rapid City 오늘 아웃도어 브리핑 (MVP)</h1>
+          <p className="text-sm text-gray-500">업데이트: {updatedAt} (America/Denver)</p>
+        </header>
+
+        <div className="grid grid-cols-1 gap-4">
+          <Card title="🏃 러닝 최적 시간대">
+            <p>① 07–09시 ② 18–20시 <span className="text-gray-400">(샘플)</span></p>
+          </Card>
+
+          <Card title="🚶 산책 최적 시간대">
+            <p>① 17–19시 ② 10–12시 <span className="text-gray-400">(샘플)</span></p>
+          </Card>
+
+          <Card title="☔ 다음 2시간 강수 브리핑">
+            <p>08:30 전후 약한 소나기 가능 → 가벼운 우산 권장 <span className="text-gray-400">(샘플)</span></p>
+          </Card>
+
+          <Card title="🌞 UV 알림">
+            <p>12–14시 ‘높음’ → 모자/선크림 권장 <span className="text-gray-400">(샘플)</span></p>
+          </Card>
+
+          <Card title="🚨 날씨 경보/특보">
+            <p>경보 없음 <span className="text-gray-400">(샘플)</span></p>
+          </Card>
+        </div>
+
+        <footer className="mt-6 text-xs text-gray-500">
+          * 실시간 변동 가능 — Day 2부터 API 연결 및 자동 갱신 적용 예정
+        </footer>
+      </div>
+    </main>
   );
 }
